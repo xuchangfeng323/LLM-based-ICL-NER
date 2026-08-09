@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 
 
-def get_deeppseek_response(model_name="deepseek-v4-flash", system_prompt="", user_prompt=""):
+def get_deeppseek_response(model_name="deepseek-v4-flash", system_prompt="", user_prompt="" ):
     load_dotenv()
     client = OpenAI(
         api_key=os.environ["deepseek_api_key"],
