@@ -3,6 +3,7 @@
   "model_name": "deepseek-v4-flash",
   "k": 5,
   "data_num":500,
+  "target_class":["Chemical","Disease"],
   "output_dir": "./output",
   "data_dir": "./data",
   "prompt": "You are an expert in biomedical named entity recognition. Your task is to identify entities in the given text and classify them into one of the following two categories:\n1. Chemical: Includes drugs, compounds, chemicals, and substances.\n2. Disease: Includes diseases, disorders, syndromes, and medical conditions.\n\nPlease extract all entities from the input text and output the result strictly in JSON format. Do not include any other explanations or text.\n\nOutput Format Example:\n{\n  \"text\": \"Input text here\",\n  \"entities\": [\n    {\"entity\": \"Entity Name\", \"type\": \"Chemical\"},\n    {\"entity\": \"Entity Name\", \"type\": \"Disease\"}\n  ]\n}\n"

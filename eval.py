@@ -9,7 +9,7 @@ class Evaluator:
         self.prompt = args.prompt
         self.system_prompt = get_prompt(k=0,data_dir="./data",system_prompt=args.prompt)
         self.model_name = args.model_name
-        self.metrics = Metrics()
+        self.metrics = Metrics(target_class=args.target_class)
         self.responses_map = {
             "deepseek":get_deeppseek_response,
         }
@@ -22,8 +22,8 @@ class Evaluator:
             response = self.model_fn(self.model_name, self.system_prompt, text)
             response_repair=json_repair.loads(response)
             entities_pred=response_repair["entities"]
-            print()
-            print(len(entities_pred))
+            self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
+            
         
 if __name__ == "__main__":
     args = Argument(args_path="./args/config.json")
