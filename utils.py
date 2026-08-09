@@ -1,3 +1,5 @@
+import os
+import json
 class Argument:
     def __init__(self, args_path):
         self.args_dict = self._load_json_config(args_path)
