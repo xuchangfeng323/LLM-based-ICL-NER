@@ -43,6 +43,9 @@ class Metrics:
         all_tp=0
         all_pred_sum=0
         all_true_sum=0
+        macro_p=0
+        macro_r=0
+        macro_f1=0
         for cls in self.target_class:
             
             true_labels=self.metrics[cls]['true_labels']
@@ -56,12 +59,19 @@ class Metrics:
             p = tp / pred_sum if pred_sum > 0 else 0
             r = tp / true_sum if true_sum > 0 else 0
             f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
+            macro_p+=p
+            macro_r+=r
+            macro_f1+=f1
             result.update({cls:{"tp":tp,"p":p,"r":r,"f1":f1,"support":true_sum} })
-        p = all_tp / all_pred_sum if all_pred_sum > 0 else 0
-        r = all_tp / all_true_sum if all_true_sum > 0 else 0
-        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
-        result.update({"p":p,"r":r,"f1":f1})
-        print(result)
+        
+        p_micro = all_tp / all_pred_sum if all_pred_sum > 0 else 0
+        r_micro = all_tp / all_true_sum if all_true_sum > 0 else 0
+        f1_micro = 2 * p_micro * r_micro / (p_micro + r_micro) if (p_micro + r_micro) > 0 else 0
+        result.update({"micro":{"p":p_micro,"r":r_micro,"f1":f1_micro,"support":all_true_sum}})
+        
+        n = len(self.target_class)
+        result.update({"macro":{"p":macro_p/n,"r":macro_r/n,"f1":macro_f1/n,"support":all_true_sum}})
+        return result
                 
         
 
