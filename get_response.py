@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 
 
-def get_deeppseek_response():
+def get_deeppseek_response(model_name="deepseek-v4-flash"):
     load_dotenv()
     client = OpenAI(
         api_key=os.environ["deepseek_api_key"],
@@ -28,11 +28,13 @@ EXAMPLE JSON OUTPUT:
                 {"role": "user", "content": user_prompt}]
 
     response = client.chat.completions.create(
-        model="deepseek-v4-flash",
+        model=model_name,
         messages=messages,
         response_format={
             'type': 'json_object'
-        }
+        },
+        top_p=1,
+        temperature=1,
     )
     print(response.choices[0].message.content)
 if __name__ == "__main__":
