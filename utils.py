@@ -40,6 +40,9 @@ class Metrics:
                 self.metrics[entity_class]['pred_labels'][key] += 1
     def calculate(self):
         result={}
+        all_tp=0
+        all_pred_sum=0
+        all_true_sum=0
         for cls in self.target_class:
             
             true_labels=self.metrics[cls]['true_labels']
@@ -47,11 +50,17 @@ class Metrics:
             tp=sum((true_labels&pred_labels).values())
             pred_sum = sum(pred_labels.values())
             true_sum = sum(true_labels.values())
-            
+            all_tp+=tp
+            all_pred_sum+=pred_sum
+            all_true_sum+=true_sum
             p = tp / pred_sum if pred_sum > 0 else 0
             r = tp / true_sum if true_sum > 0 else 0
             f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
             result.update({cls:{"tp":tp,"p":p,"r":r,"f1":f1,"support":true_sum} })
+        p = all_tp / all_pred_sum if all_pred_sum > 0 else 0
+        r = all_tp / all_true_sum if all_true_sum > 0 else 0
+        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
+        result.update({"p":p,"r":r,"f1":f1})
         print(result)
                 
         
