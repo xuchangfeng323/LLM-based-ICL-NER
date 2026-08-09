@@ -2,6 +2,7 @@ import json
 from data_process import get_prompt, get_eval_data
 from get_response import get_deeppseek_response
 from utils import Metrics, Argument
+import json_repair
 class Evaluator: 
     def __init__(self, args):
         self.model = args.model
@@ -19,8 +20,10 @@ class Evaluator:
             text = item['text']
             entities = item['entities']
             response = self.model_fn(self.model_name, self.system_prompt, text)
-            print(json.dumps(json.loads(response)["entities"], indent=2))
-            print(len(entities))
+            response_repair=json_repair.loads(response)
+            entities_pred=response_repair["entities"]
+            print()
+            print(len(entities_pred))
         
 if __name__ == "__main__":
     args = Argument(args_path="./args/config.json")
