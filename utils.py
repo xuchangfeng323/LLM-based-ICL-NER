@@ -10,5 +10,7 @@ class Argument:
                 return json.load(f)
         else:
             raise FileNotFoundError(f"Config file not found: {config_path}")
-        
+class Metrics:
+    def __init__(self):
+        self.metrics = {}
 
