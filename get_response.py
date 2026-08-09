@@ -23,6 +23,7 @@ def get_deeppseek_response(model_name="deepseek-v4-flash", system_prompt="", use
         },
         top_p=1,
         temperature=1,
+        extra_body={"thinking": {"type": "disabled"}}
     )
     return response.choices[0].message.content
 if __name__ == "__main__":

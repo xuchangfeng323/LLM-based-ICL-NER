@@ -1,5 +1,6 @@
 import os
 import json
+from collections import Counter
 class Argument:
     def __init__(self, args_path):
         self.args_dict = self._load_json_config(args_path)
@@ -28,13 +29,13 @@ class Metrics:
         for true_label in true_labels:
             entity_class = true_label['type']
             if entity_class in self.target_class:
-                entity_name=true_label['entity_name']
+                entity_name=true_label['entity_name'].lower()
                 key=(id,entity_name)
                 self.metrics[entity_class]['true_labels'][key] += 1
         for pred_label in pred_labels:
             entity_class = pred_label['type']
             if entity_class in self.target_class:
-                entity_name=pred_label['entity_name']
+                entity_name=pred_label['entity_name'].lower()
                 key=(id,entity_name)
                 self.metrics[entity_class]['pred_labels'][key] += 1
     def calculate(self):
@@ -43,11 +44,14 @@ class Metrics:
             
             true_labels=self.metrics[cls]['true_labels']
             pred_labels=self.metrics[cls]['pred_labels']
-            tp=len(true_labels&pred_labels)
-            p=tp/len(pred_labels)
-            r=tp/len(true_labels)
-            f1=2*p*r/(p+r)
-            result.update({cls:{"tp":tp,"p":p,"r":r,"f1":f1,"support":len(true_labels)} })
+            tp=sum((true_labels&pred_labels).values())
+            pred_sum = sum(pred_labels.values())
+            true_sum = sum(true_labels.values())
+            
+            p = tp / pred_sum if pred_sum > 0 else 0
+            r = tp / true_sum if true_sum > 0 else 0
+            f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
+            result.update({cls:{"tp":tp,"p":p,"r":r,"f1":f1,"support":true_sum} })
         print(result)
                 
         

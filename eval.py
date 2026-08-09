@@ -22,12 +22,17 @@ class Evaluator:
             response = self.model_fn(self.model_name, self.system_prompt, text)
             response_repair=json_repair.loads(response)
             entities_pred=response_repair["entities"]
+            print("pred")
+            print(entities_pred)
+            print("true")
+            print(entities)
             self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
-            
+        return self.metrics.calculate()
         
 if __name__ == "__main__":
     args = Argument(args_path="./args/config.json")
     evaluator = Evaluator(args)
     eval_data=get_eval_data(data_dir="./data",data_num=1)
-    evaluator.evaluate(eval_data)
+    result=evaluator.evaluate(eval_data)
+    print(result)
             

@@ -66,7 +66,7 @@ def get_eval_data(data_dir="./data",data_num=500):
                     
                     if  (parts[4] == 'Chemical' or parts[4] == 'Disease'):
                         entity={
-                            "entity": parts[3],
+                            "entity_name": parts[3],
                             "type": parts[4]
                         }
                         entities.append(entity)
