@@ -1,7 +1,7 @@
 {
   "model": "deepseek",
   "model_name": "deepseek-v4-flash",
-  "k_shot": 0,
+  "k_shot": 3,
   "data_num":5,
   "target_class":["Chemical","Disease"],
   "output_dir": "./output",

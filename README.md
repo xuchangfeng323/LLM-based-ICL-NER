@@ -81,3 +81,10 @@ python eval.py
 
 ## 实验结果
 ### DeepSeek v4-flash
+#### 3-shot
+|  | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
+| Chemical | 0.7727 | 0.6952 | 0.7319 | 5,203 |
+| Disease | 0.6668 | 0.7059 | 0.6858 | 4,182 |
+| Micro Avg | 0.7212 | 0.6999 | 0.7104 | 9,385 |
+| Macro Avg | 0.7198 | 0.7005 | 0.7088 | 9,385 |
