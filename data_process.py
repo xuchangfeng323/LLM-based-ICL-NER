@@ -31,7 +31,7 @@ def get_prompt(k=0,data_dir="./data",system_prompt=""):
                     if  (parts[4] == 'Chemical' or parts[4] == 'Disease'):
                         entity={
                             
-                            "entity": parts[3],
+                            "entity_name": parts[3],
                             "type": parts[4]
                         }
                         entities.append(entity)
