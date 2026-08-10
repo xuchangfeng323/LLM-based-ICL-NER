@@ -21,7 +21,9 @@
 
 ```bash
 # 安装依赖
-pip install openai python-dotenv json-repair
+pip install -r requirements.txt
+
+
 
 # 配置 API Key：在项目根目录创建 .env 文件
 echo 'deepseek_api_key="sk-你的key"' > .env
@@ -96,7 +98,7 @@ python eval.py
 | Micro Avg | 0.7212 | 0.6999 | 0.7104 | 9,385 |
 | Macro Avg | 0.7198 | 0.7005 | 0.7088 | 9,385 |
 #### 5-shot
-| 实体类型 | Precision | Recall | F1-Score | Support |
+|  | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- |
 | Chemical | 0.8038 | 0.7332 | 0.7669 | 5,203 |
 | Disease | 0.7110 | 0.6946 | 0.7027 | 4,182 |

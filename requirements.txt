@@ -1,0 +1,4 @@
+json_repair==0.62.0
+openai==2.53.0
+python-dotenv==1.2.2
+tqdm==4.67.3
