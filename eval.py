@@ -32,7 +32,7 @@ class Evaluator:
             # print(entities)
             self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
     def evaluate(self, eval_data):
-        with ThreadPoolExecutor(max_workers=50) as executor:
+        with ThreadPoolExecutor(max_workers=args.num_workers) as executor:
             futures= [executor.submit(self.evaluate_item, item) for item in eval_data]
             for future in tqdm(as_completed(futures), desc="Evaluating", total=len(futures)):
                 future.result()

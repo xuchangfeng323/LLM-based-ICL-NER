@@ -81,6 +81,13 @@ python eval.py
 
 ## 实验结果
 ### DeepSeek v4-flash
+#### 0-shot
+|  | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
+| Chemical | 0.6640 | 0.3148 | 0.4271 | 5,203 |
+| Disease | 0.6117 | 0.4433 | 0.5141 | 4,182 |
+| Micro Avg | 0.6351 | 0.3721 | 0.4693 | 9,385 |
+| Macro Avg | 0.6378 | 0.3791 | 0.4706 | 9,385 |
 #### 3-shot
 |  | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- |
@@ -88,7 +95,21 @@ python eval.py
 | Disease | 0.6668 | 0.7059 | 0.6858 | 4,182 |
 | Micro Avg | 0.7212 | 0.6999 | 0.7104 | 9,385 |
 | Macro Avg | 0.7198 | 0.7005 | 0.7088 | 9,385 |
+#### 5-shot
+| 实体类型 | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
+| Chemical | 0.8038 | 0.7332 | 0.7669 | 5,203 |
+| Disease | 0.7110 | 0.6946 | 0.7027 | 4,182 |
+| Micro Avg | 0.7609 | 0.7160 | 0.7378 | 9,385 |
+| Macro Avg | 0.7574 | 0.7139 | 0.7348 | 9,385 |
 ### DeepSeek v4-pro
+#### 0-shot
+|  | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
+| Chemical | 0.7639 | 0.4893 | 0.5965 | 5,203 |
+| Disease | 0.7355 | 0.5127 | 0.6042 | 4,182 |
+| Micro Avg | 0.7506 | 0.4997 | 0.6000 | 9,385 |
+| Macro Avg | 0.7497 | 0.5010 | 0.6004 | 9,385 |
 #### 3-shot
 |  | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- |
