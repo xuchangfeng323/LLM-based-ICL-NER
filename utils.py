@@ -27,15 +27,18 @@ class Metrics:
         true_labels=item['true_labels']
         pred_labels=item['pred_labels']
         for true_label in true_labels:
-            entity_class = true_label['type']
+            entity_class = true_label.get("type","")
+            entity_name = true_label.get("entity_name","")
+            entity_name=entity_name.lower()
             if entity_class in self.target_class:
-                entity_name=true_label['entity_name'].lower()
+               
                 key=(id,entity_name)
                 self.metrics[entity_class]['true_labels'][key] += 1
         for pred_label in pred_labels:
-            entity_class = pred_label['type']
+            entity_class = pred_label.get("type","")
+            entity_name = pred_label.get("entity_name","")
+            entity_name=entity_name.lower()
             if entity_class in self.target_class:
-                entity_name=pred_label['entity_name'].lower()
                 key=(id,entity_name)
                 self.metrics[entity_class]['pred_labels'][key] += 1
     def calculate(self):
