@@ -132,4 +132,5 @@ python eval.py
 
 ## 参考文档
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
+- [json repair 文档](https://pypi.org/project/json-repair/)
 
