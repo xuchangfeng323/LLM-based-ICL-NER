@@ -37,10 +37,11 @@ echo 'deepseek_api_key="sk-你的key"' > .env
 |---|---|---|
 | `model` | 模型供应商标识（用于路由） | `"deepseek"` |
 | `model_name` | 实际调用的模型名称 | `"deepseek-v4-flash"` |
-| `k` | few-shot 示例数量 | `5` |
-| `data_num` | 评估样本数量 | `500` |
+| `k_shot` | few-shot 示例数量 | `5` |
+| `num_workers` | 并发调用 API 的线程数（ThreadPoolExecutor） | `200` |
+| `data_num` | 评估样本数量 | `5` |
 | `target_class` | 目标实体类别 | `["Chemical", "Disease"]` |
-| `output_dir` | 输出目录 | `"./output"` |
+| `output_dir` | 输出目录（当前版本暂未使用） | `"./output"` |
 | `data_dir` | 数据目录 | `"./data"` |
 | `prompt` | 系统提示词（定义任务与输出格式） | |
 
@@ -50,7 +51,16 @@ echo 'deepseek_api_key="sk-你的key"' > .env
 python eval.py
 ```
 
+## 模型调用参数
 
+`get_response.py` 中调用 DeepSeek API 的关键参数：
+
+| 参数 | 值 | 说明 |
+|---|---|---|
+| `response_format` | `{"type": "json_object"}` | 启用<a herf="https://api-docs.deepseek.com/zh-cn/guides/json_mode">DeepSeek **JSON Output** 模式</a>，强制模型以 JSON 格式返回，配合 `json_repair` 解析实体结果 |
+| `top_p` | `1` | 核采样概率阈值，`1` 表示不做截断，保留完整候选分布 |
+| `temperature` | `1` | 采样温度，`1` 为默认值，平衡随机性与确定性 |
+| `thinking` | `{"type": "disabled"}` | **禁用思考模式** |
 
 ## 评估指标
 
@@ -119,3 +129,7 @@ python eval.py
 | Disease | 0.7842 | 0.7054 | 0.7427 | 4,182 |
 | Micro Avg | 0.8007 | 0.7688 | 0.7844 | 9,385 |
 | Macro Avg | 0.7983 | 0.7626 | 0.7794 | 9,385 |
+
+## 参考文档
+- [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
+
