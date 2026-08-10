@@ -48,14 +48,7 @@ echo 'deepseek_api_key="sk-你的key"' > .env
 python eval.py
 ```
 
-运行流程：
 
-1. 读取 `config.json` 配置
-2. 从 CDR 训练集前 `k` 篇文章构造 few-shot 示例，拼接在系统提示词后
-3. 加载前 `data_num` 篇文章作为评估集（PubTator 中的真实实体标注作为 ground truth）
-4. 逐篇调用 DeepSeek 模型提取实体（JSON 格式输出）
-5. 使用 `json-repair` 容错解析模型输出
-6. 计算各实体类别及宏平均/微平均的 P、R、F1
 
 ## 评估指标
 
@@ -70,7 +63,7 @@ python eval.py
 
 ## 数据格式
 ```bash
-3403780|t|Paracetamol-associated coma, metabolic acidosis, renal and hepatic failure.
+        3403780|t|Paracetamol-associated coma, metabolic acidosis, renal and hepatic failure.
 		3403780|a|A case of metabolic acidosis, acute renal failure and hepatic failure following paracetamol ingestion is presented. The diagnostic difficulty at presentation is highlighted .....
 		3403780	0	11	Paracetamol	Chemical	D000082	
 		3403780	23	27	coma	Disease	D003128	
