@@ -1,6 +1,6 @@
 # LLM-based-ICL-NER
 
-基于大语言模型（LLM）+ 上下文学习（In-Context Learning, ICL）的命名实体识别（NER）项目。在 <a href="https://github.com/JHnlp/BioCreative-V-CDR-Corpus">BC5CDR</a> 数据集上，通过 k-shot 示例引导大模型识别摘要和标题中的化学物质（Chemical）和疾病（Disease）实体，并评估精确率、召回率和 F1。
+基于大语言模型（LLM）+ 上下文学习（In-Context Learning, ICL）的命名实体识别（NER）项目。在 <a href="https://github.com/JHnlp/BioCreative-V-CDR-Corpus">BC5CDR</a> 数据集上，通过 k-shot 示例引导大模型识别摘要和标题中的化学物质（Chemical）和疾病（Disease）实体，并评估前500条数据的精确率、召回率和 F1。
 ## 项目结构
 
 ```
@@ -39,9 +39,9 @@ echo 'deepseek_api_key="sk-你的key"' > .env
 | `model_name` | 实际调用的模型名称 | `"deepseek-v4-flash"` |
 | `k_shot` | few-shot 示例数量 | `5` |
 | `num_workers` | 并发调用 API 的线程数（ThreadPoolExecutor） | `200` |
-| `data_num` | 评估样本数量 | `5` |
+| `data_num` | 评估样本数量 | `500` |
 | `target_class` | 目标实体类别 | `["Chemical", "Disease"]` |
-| `output_dir` | 输出目录（当前版本暂未使用） | `"./output"` |
+| `output_dir` | 输出目录 | `"./output"` |
 | `data_dir` | 数据目录 | `"./data"` |
 | `prompt` | 系统提示词（定义任务与输出格式） | |
 
