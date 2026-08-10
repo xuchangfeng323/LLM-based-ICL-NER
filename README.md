@@ -129,7 +129,14 @@ python eval.py
 | Disease | 0.7842 | 0.7054 | 0.7427 | 4,182 |
 | Micro Avg | 0.8007 | 0.7688 | 0.7844 | 9,385 |
 | Macro Avg | 0.7983 | 0.7626 | 0.7794 | 9,385 |
-
+### Qwen3.6-35B-A3B-abliterated
+#### 0-shot
+|  | Precision | Recall | F1-Score | Support |
+|---|-----------|--------|----------|---------|
+| Chemical | 0.6093 | 0.3120 | 0.4127 | 920 |
+| Disease | 0.5382 | 0.3894 | 0.4519 | 850 |
+| micro | 0.5691 | 0.3492 | 0.4328 | 1770 |
+| macro | 0.5738 | 0.3507 | 0.4323 | 1770 |
 ## 参考文档
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [json repair 文档](https://pypi.org/project/json-repair/)
