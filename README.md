@@ -114,7 +114,7 @@ python eval.py
 | Disease | 0.7110 | 0.6946 | 0.7027 | 4,182 |
 | Micro Avg | 0.7609 | 0.7160 | 0.7378 | 9,385 |
 | Macro Avg | 0.7574 | 0.7139 | 0.7348 | 9,385 |
-### DeepSeek v4-pro
+### DeepSeek v4-pro Preview
 #### 0-shot
 |  | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- |
@@ -133,10 +133,10 @@ python eval.py
 #### 0-shot
 |  | Precision | Recall | F1-Score | Support |
 |---|-----------|--------|----------|---------|
-| Chemical | 0.6093 | 0.3120 | 0.4127 | 920 |
-| Disease | 0.5382 | 0.3894 | 0.4519 | 850 |
-| micro | 0.5691 | 0.3492 | 0.4328 | 1770 |
-| macro | 0.5738 | 0.3507 | 0.4323 | 1770 |
+| Chemical | 0.6051 | 0.3004 | 0.4015 | 5203 |
+| Disease | 0.5512 | 0.4005 | 0.4639 | 4182 |
+| micro | 0.5760 | 0.3450 | 0.4315 | 9385 |
+| macro | 0.5781 | 0.3505 | 0.4327 | 9385 |
 ## 参考文档
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [json repair 文档](https://pypi.org/project/json-repair/)
