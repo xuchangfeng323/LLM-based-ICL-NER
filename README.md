@@ -137,6 +137,15 @@ python eval.py
 | Disease | 0.5512 | 0.4005 | 0.4639 | 4182 |
 | micro | 0.5760 | 0.3450 | 0.4315 | 9385 |
 | macro | 0.5781 | 0.3505 | 0.4327 | 9385 |
+### gpt-5.6-terra
+#### 0-shot
+#### 3-shot
+|  | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
+| Chemical | 0.8127 | 0.8190 | 0.8158 | 5203 |
+| Disease | 0.6765 | 0.7257 | 0.7003 | 4182 |
+| micro | 0.7499 | 0.7774 | 0.7634 | 9385 |
+| macro | 0.7446 | 0.7723 | 0.7580 | 9385 |
 ## 参考文档
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [json repair 文档](https://pypi.org/project/json-repair/)
