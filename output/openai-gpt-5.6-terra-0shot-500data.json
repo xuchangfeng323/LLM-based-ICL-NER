@@ -1,0 +1,44 @@
+{
+    "args": {
+        "model": "openai",
+        "model_name": "gpt-5.6-terra",
+        "k_shot": 0,
+        "num_workers": 200,
+        "data_num": 500,
+        "target_class": [
+            "Chemical",
+            "Disease"
+        ],
+        "output_dir": "./output",
+        "data_dir": "./data",
+        "prompt": "You are an expert in biomedical named entity recognition. Your task is to identify entities in the given text and classify them into one of the following two categories:\n1. Chemical: Includes drugs, compounds, chemicals, and substances.\n2. Disease: Includes diseases, disorders, syndromes, and medical conditions.\n\nPlease extract all entities from the input text and output the result strictly in JSON format. Do not include any other explanations or text.\n\nOutput Format Example:\n{\n  \"text\": \"Input text here\",\n  \"entities\": [\n    {\"entity_name\": \"Entity Name\", \"type\": \"Chemical or Disease\"},\n }\n"
+    },
+    "result": {
+        "Chemical": {
+            "tp": 1419,
+            "p": 0.776258205689278,
+            "r": 0.2727272727272727,
+            "f1": 0.40364101834731897,
+            "support": 5203
+        },
+        "Disease": {
+            "tp": 1448,
+            "p": 0.7066861883845779,
+            "r": 0.34624581539933047,
+            "f1": 0.4647729096453218,
+            "support": 4182
+        },
+        "micro": {
+            "p": 0.7394892958473046,
+            "r": 0.3054874800213106,
+            "f1": 0.43236314281405513,
+            "support": 9385
+        },
+        "macro": {
+            "p": 0.7414721970369279,
+            "r": 0.30948654406330156,
+            "f1": 0.4342069639963204,
+            "support": 9385
+        }
+    }
+}
