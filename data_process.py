@@ -2,7 +2,8 @@ import os
 import json
 def get_prompt(k=0,data_dir="./data",system_prompt=""):
     if k <0:
-        raise ValueError("k must be greater than 0")
+        raise ValueError("k must be non-negative")
+        
     elif k == 0:
         return system_prompt
     else:
