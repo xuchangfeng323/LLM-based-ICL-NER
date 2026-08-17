@@ -2,7 +2,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 from data_process import get_prompt, get_eval_data
-from get_response import get_deeppseek_response, get_gpt_response, get_qwen_response
+from get_response import get_deepseek_response, get_gpt_response, get_qwen_response
 from utils import Metrics, Argument
 import json_repair
 import os
@@ -17,7 +17,7 @@ class Evaluator:
         self.model_name = args.model_name
         self.metrics = Metrics(target_class=args.target_class)
         self.responses_map = {
-            "deepseek":get_deeppseek_response,
+            "deepseek":get_deepseek_response,
             "openai":get_gpt_response,
             "qwen":get_qwen_response
         }
@@ -36,7 +36,7 @@ class Evaluator:
             # print(entities)
             self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
     def evaluate(self, eval_data):
-        with ThreadPoolExecutor(max_workers=args.num_workers) as executor:
+        with ThreadPoolExecutor(max_workers=self.args.num_workers) as executor:
             futures= [executor.submit(self.evaluate_item, item) for item in eval_data]
             for future in tqdm(as_completed(futures), desc="Evaluating", total=len(futures)):
                 future.result()
