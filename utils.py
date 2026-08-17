@@ -1,6 +1,7 @@
 import os
 import json
 from collections import Counter
+import threading
 class Argument:
     def __init__(self, args_path):
         self.args_dict = self._load_json_config(args_path)
@@ -22,25 +23,27 @@ class Metrics:
                 "true_labels":Counter(),
                 "pred_labels":Counter(),
             }
+        self.lock = threading.Lock()
     def add(self,item):
-        id=item['id']
-        true_labels=item['true_labels']
-        pred_labels=item['pred_labels']
-        for true_label in true_labels:
-            entity_class = true_label.get("type","")
-            entity_name = true_label.get("entity_name","")
-            entity_name=entity_name.lower()
-            if entity_class in self.target_class:
-               
-                key=(id,entity_name)
-                self.metrics[entity_class]['true_labels'][key] += 1
-        for pred_label in pred_labels:
-            entity_class = pred_label.get("type","")
-            entity_name = pred_label.get("entity_name","")
-            entity_name=entity_name.lower()
-            if entity_class in self.target_class:
-                key=(id,entity_name)
-                self.metrics[entity_class]['pred_labels'][key] += 1
+        with self.lock:
+            id=item['id']
+            true_labels=item['true_labels']
+            pred_labels=item['pred_labels']
+            for true_label in true_labels:
+                entity_class = true_label.get("type","")
+                entity_name = true_label.get("entity_name","")
+                entity_name=entity_name.lower()
+                if entity_class in self.target_class:
+                
+                    key=(id,entity_name)
+                    self.metrics[entity_class]['true_labels'][key] += 1
+            for pred_label in pred_labels:
+                entity_class = pred_label.get("type","")
+                entity_name = pred_label.get("entity_name","")
+                entity_name=entity_name.lower()
+                if entity_class in self.target_class:
+                    key=(id,entity_name)
+                    self.metrics[entity_class]['pred_labels'][key] += 1
     def calculate(self):
         result={}
         all_tp=0
