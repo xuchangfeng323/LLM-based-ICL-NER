@@ -2,7 +2,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 from data_process import get_prompt, get_eval_data
-from get_response import get_deepseek_response, get_gpt_response, get_qwen_response
+from get_response import get_deepseek_response, get_gpt_response, get_qwen_response, get_ollama_response, get_mimo_response
 from utils import Metrics, Argument
 import json_repair
 import os
@@ -19,7 +19,9 @@ class Evaluator:
         self.responses_map = {
             "deepseek":get_deepseek_response,
             "openai":get_gpt_response,
-            "qwen":get_qwen_response
+            "qwen":get_qwen_response,
+            "ollama":get_ollama_response,
+            "mimo":get_mimo_response,
         }
         self.model_fn = self.responses_map[self.model]
     def evaluate_item(self, item):

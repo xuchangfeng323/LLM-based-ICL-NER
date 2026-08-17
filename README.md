@@ -26,7 +26,9 @@ pip install -r requirements.txt
 
 
 # 配置 API Key：在项目根目录创建 .env 文件
-echo 'deepseek_api_key="sk-你的key"' > .env
+echo 'openai_api_key="sk-你的key"' > .env
+echo 'api_key="sk-你的key"' >> .env
+echo 'deepseek_api_key="sk-你的key"' >> .env
 ```
 
 ## 配置说明
@@ -156,4 +158,6 @@ python eval.py
 ## 参考文档
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [json repair 文档](https://pypi.org/project/json-repair/)
+- [Mimo API 文档](https://mimo.mi.com/docs/zh-CN/api/guidance/model-hyperparameters)
+
 
