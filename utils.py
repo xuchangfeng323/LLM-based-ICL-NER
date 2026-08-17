@@ -13,7 +13,7 @@ class Argument:
             with open(args_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         else:
-            raise FileNotFoundError(f"Config file not found: {config_path}")
+            raise FileNotFoundError(f"Config file not found: {args_path}")
 class Metrics:
     def __init__(self, target_class=["Chemical","Disease"]):
         self.target_class = target_class
