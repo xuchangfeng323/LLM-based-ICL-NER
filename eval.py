@@ -32,10 +32,6 @@ class Evaluator:
                 response = self.model_fn(self.model_name, self.system_prompt, text)
                 response_repair=json_repair.loads(response)
                 entities_pred=response_repair["entities"]
-                # print("pred")
-                # print(entities_pred)
-                # print("true")
-                # print(entities)
                 self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
             except:
                 print(item)
