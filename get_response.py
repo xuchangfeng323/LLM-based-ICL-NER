@@ -11,9 +11,9 @@ if "deepseek_api_key"  in os.environ:
         api_key=os.environ["deepseek_api_key"],
         base_url="https://api.deepseek.com",
     )
-if "gpt_api_key"  in os.environ:
+if "openai_api_key"  in os.environ:
     gpt_client = OpenAI(
-        api_key=os.environ["gpt_api_key"],
+        api_key=os.environ["openai_api_key"],
         base_url="https://zyapi.tuluo.top:8888/v1",
     )
 if "api_key"  in os.environ:
