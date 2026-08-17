@@ -25,18 +25,20 @@ class Evaluator:
         }
         self.model_fn = self.responses_map[self.model]
     def evaluate_item(self, item):
-        
-            id = item['id']
-            text = item['text']
-            entities = item['entities']
-            response = self.model_fn(self.model_name, self.system_prompt, text)
-            response_repair=json_repair.loads(response)
-            entities_pred=response_repair["entities"]
-            # print("pred")
-            # print(entities_pred)
-            # print("true")
-            # print(entities)
-            self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
+            try:
+                id = item['id']
+                text = item['text']
+                entities = item['entities']
+                response = self.model_fn(self.model_name, self.system_prompt, text)
+                response_repair=json_repair.loads(response)
+                entities_pred=response_repair["entities"]
+                # print("pred")
+                # print(entities_pred)
+                # print("true")
+                # print(entities)
+                self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
+            except:
+                print(item)
     def evaluate(self, eval_data):
         with ThreadPoolExecutor(max_workers=self.args.num_workers) as executor:
             futures= [executor.submit(self.evaluate_item, item) for item in eval_data]
