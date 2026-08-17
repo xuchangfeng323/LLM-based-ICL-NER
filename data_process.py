@@ -40,7 +40,7 @@ def get_prompt(k=0,data_dir="./data",system_prompt=""):
         return system_prompt+k_shot_prompt+json.dumps(examples,ensure_ascii=False)[1:-1]
 
 def get_eval_data(data_dir="./data",data_num=500):
-    with open(os.path.join(data_dir, f"CDR_TrainingSet.PubTator.txt"), 'r', encoding='utf-8') as f:
+    with open(os.path.join(data_dir, f"CDR_TestSet.PubTator.txt"), 'r', encoding='utf-8') as f:
             data = f.read()
             blocks=data.strip().split('\n\n')
             blocks=[b for b in blocks if b.strip()]
