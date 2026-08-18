@@ -35,6 +35,7 @@ class Evaluator:
                 self.metrics.add({"id":id,"true_labels":entities,"pred_labels":entities_pred})
             except:
                 print(item)
+                self.metrics.add({"id": id, "true_labels": entities, "pred_labels": []})
     def evaluate(self, eval_data):
         with ThreadPoolExecutor(max_workers=self.args.num_workers) as executor:
             futures= [executor.submit(self.evaluate_item, item) for item in eval_data]
